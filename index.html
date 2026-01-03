@@ -18,7 +18,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- 动态暖黄呼吸灯背景 --- */
+        /* --- 动态暖黄呼吸背景 --- */
         #bg-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -33,10 +33,10 @@
             opacity: 0;
             transition: opacity 3.5s ease-in-out;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, transparent 75%);
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.45) 0%, transparent 75%);
         }
 
-        /* --- 英雄区图片滚动槽 --- */
+        /* --- 图片滚动槽 --- */
         .scroller {
             mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
         }
@@ -68,25 +68,30 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* --- 颜色主题 --- */
-        .theme-gold { border-color: rgba(245, 158, 11, 0.25); }
-        .theme-purple { border-color: rgba(139, 92, 246, 0.25); }
-        .theme-red { border-color: rgba(244, 63, 94, 0.25); }
+        /* --- 渐变文字效果 --- */
+        .title-gradient {
+            background: linear-gradient(to right, #fff 40%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .slogan-gradient {
+            background: linear-gradient(to right, #fbbf24, #f59e0b, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
 
-        .btn-glow { animation: btnPulse 2.5s infinite; }
+        .btn-glow {
+            animation: btnPulse 2.5s infinite;
+        }
         @keyframes btnPulse {
             0%, 100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.2); }
             50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.5); }
         }
 
-        .text-gold-gradient {
-            background: linear-gradient(to right, #fff 30%, #fbbf24 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .modal-overlay {
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.96);
             backdrop-filter: blur(25px);
             display: none;
             position: fixed;
@@ -95,20 +100,6 @@
             align-items: center;
             justify-content: center;
             padding: 1.5rem;
-        }
-
-        .copy-toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #f59e0b;
-            color: black;
-            padding: 0.75rem 1.5rem;
-            border-radius: 1rem;
-            font-weight: 800;
-            display: none;
-            z-index: 200;
         }
     </style>
 </head>
@@ -119,45 +110,67 @@
         <div id="blob2" class="blob"></div>
     </div>
 
+    <!-- 顶部导航 -->
     <header class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-2xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center shadow-lg">
                     <i data-lucide="zap" class="text-white w-5 h-5 fill-current"></i>
                 </div>
-                <span class="font-black text-xl tracking-tighter">AI画师管家</span>
+                <span class="font-black text-xl tracking-tighter italic">AI MASTER</span>
             </div>
-            <nav class="flex items-center gap-6 text-sm font-bold">
-                <a href="https://vince-zi.github.io/sodx/" target="_blank" class="text-gray-400 hover:text-white transition-colors">网盘入口</a>
+            <nav class="flex items-center gap-6">
+                <a href="https://vince-zi.github.io/sodx/" target="_blank" class="text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">网盘入口</a>
                 <a href="#pricing" class="bg-amber-500 px-5 py-2 rounded-xl text-xs font-black text-white hover:scale-105 transition-transform shadow-lg shadow-amber-500/30">立即开启</a>
             </nav>
         </div>
     </header>
 
+    <!-- 英雄区 (Hero Section) -->
     <section class="relative pt-36 pb-20 px-6 overflow-hidden">
         <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-            <div class="w-full lg:w-[480px] shrink-0">
+            
+            <!-- 左侧：纯净无遮挡图片滚动 -->
+            <div class="w-full lg:w-[460px] shrink-0">
                 <div class="relative aspect-[4/5] w-full bg-transparent overflow-hidden scroller">
                     <div class="scroller-inner p-2">
-                        <img src="https://images.unsplash.com/photo-1679083216051-aa510a1a2c0e?q=80&w=600" alt="AI Art">
-                        <img src="https://images.unsplash.com/photo-1673191898498-9bac443b2407?q=80&w=600" alt="AI Art">
-                        <img src="https://images.unsplash.com/photo-1684164304844-3880c046f236?q=80&w=600" alt="AI Art">
-                        <img src="https://images.unsplash.com/photo-1675557009875-436f2976d99a?q=80&w=600" alt="AI Art">
-                        <img src="https://images.unsplash.com/photo-1679083216051-aa510a1a2c0e?q=80&w=600" alt="AI Art">
+                        <img src="https://images.unsplash.com/photo-1679083216051-aa510a1a2c0e?q=80&w=600" alt="AI artwork">
+                        <img src="https://images.unsplash.com/photo-1673191898498-9bac443b2407?q=80&w=600" alt="AI artwork">
+                        <img src="https://images.unsplash.com/photo-1684164304844-3880c046f236?q=80&w=600" alt="AI artwork">
+                        <img src="https://images.unsplash.com/photo-1675557009875-436f2976d99a?q=80&w=600" alt="AI artwork">
+                        <!-- Loop -->
+                        <img src="https://images.unsplash.com/photo-1679083216051-aa510a1a2c0e?q=80&w=600" alt="AI artwork">
                     </div>
                 </div>
             </div>
 
+            <!-- 右侧：震撼文案区 -->
             <div class="flex-1 text-center lg:text-left">
-                <h1 class="text-5xl md:text-8xl font-black mb-10 leading-[1.05] tracking-tighter">
+                <div class="inline-block px-4 py-1.5 mb-8 rounded-full border border-amber-500/20 bg-amber-500/10 text-amber-500 text-[10px] font-black tracking-[0.2em] uppercase">
+                    Revolutionary Efficiency
+                </div>
+                <!-- 修复出片不换行 -->
+                <h1 class="text-5xl md:text-[5rem] font-black mb-10 leading-[1.1] tracking-tighter">
                     别再被提示词折磨了<br>
-                    这里只有 <span class="text-amber-500">‘下拉’</span> 和 <span class="text-gold-gradient">‘出片’</span>
+                    这里只有 <span class="text-amber-500">‘下拉’</span> 和 <span class="title-gradient whitespace-nowrap">‘出片’</span>
                 </h1>
                 
-                <div class="space-y-4 mb-12 text-gray-400 font-bold text-lg md:text-xl">
-                    <p class="flex items-start gap-4"><i data-lucide="chevron-right" class="text-amber-500 w-6 h-6 shrink-0 mt-0.5"></i> 想不出好词？下拉三秒钟，搞定 10 小时调不出的高级感。</p>
-                    <p class="flex items-start gap-4"><i data-lucide="chevron-right" class="text-amber-500 w-6 h-6 shrink-0 mt-0.5"></i> 我把 1000 组爆款逻辑存进了下拉框，你只需要负责审美。</p>
-                    <p class="flex items-start gap-4"><i data-lucide="chevron-right" class="text-amber-500 w-6 h-6 shrink-0 mt-0.5"></i> 不懂提示词没关系，只要你会下拉，你就是 AI 绘画大师。</p>
+                <div class="space-y-5 mb-12">
+                    <p class="text-lg md:text-xl font-bold flex items-center justify-center lg:justify-start">
+                        <span class="slogan-gradient leading-relaxed">想不出好词？下拉三秒钟，搞定 10 小时也调不出的高级感。</span>
+                    </p>
+                    <p class="text-lg md:text-xl font-bold flex items-center justify-center lg:justify-start">
+                        <span class="slogan-gradient leading-relaxed">我把 1000 组爆款逻辑存进了下拉框，你只需要负责审美。</span>
+                    </p>
+                    <p class="text-lg md:text-xl font-bold flex items-center justify-center lg:justify-start">
+                        <span class="slogan-gradient leading-relaxed">省下写提示词的时间去喝咖啡，图，下拉一下就有了。</span>
+                    </p>
+                    <p class="text-lg md:text-xl font-bold flex items-center justify-center lg:justify-start">
+                        <span class="slogan-gradient leading-relaxed">万级播放同款审美，全都藏在你的下拉列表里。</span>
+                    </p>
+                    <p class="text-lg md:text-xl font-bold flex items-center justify-center lg:justify-start">
+                        <span class="slogan-gradient leading-relaxed">不懂提示词没关系，只要你会下拉，你就是 AI 绘画大师。</span>
+                    </p>
                 </div>
 
                 <div class="flex flex-wrap gap-5 justify-center lg:justify-start">
@@ -169,90 +182,90 @@
         </div>
     </section>
 
+    <!-- 三色色块模块区 -->
     <section id="pricing" class="py-24 px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
             
-            <!-- 模块 1: 提示词助手 -->
-            <div class="glass-card theme-gold p-10 rounded-[3.5rem] flex flex-col relative overflow-hidden">
+            <!-- 模块 1: 提示词助手 (暖黄) -->
+            <div class="glass-card p-10 rounded-[3.5rem] border-amber-500/20 flex flex-col relative overflow-hidden group">
                 <div class="absolute -top-20 -right-20 w-60 h-60 bg-amber-500/10 blur-3xl"></div>
                 <div class="mb-10 relative z-10">
-                    <div class="w-14 h-14 bg-amber-500/20 rounded-2xl flex items-center justify-center mb-6 text-amber-500 shadow-inner">
-                        <i data-lucide="sparkle" class="w-8 h-8 fill-current"></i>
+                    <div class="w-14 h-14 bg-amber-500/20 rounded-2xl flex items-center justify-center mb-6 text-amber-500">
+                        <i data-lucide="sparkles" class="w-8 h-8 fill-current"></i>
                     </div>
                     <h3 class="text-2xl font-black mb-2 tracking-tight">AI 提示词助手</h3>
-                    <p class="text-gray-500 text-xs font-black uppercase tracking-widest">Premium Prompt Tool</p>
+                    <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest italic">Webapp Paid Access</p>
                 </div>
                 
                 <div class="space-y-4 mb-10 relative z-10">
-                    <button onclick="openModal('体验版 (WebApp)', '6.6')" class="w-full flex items-center justify-between p-5 bg-amber-500/5 border border-amber-500/20 rounded-2xl hover:bg-amber-500/10 transition-colors group">
-                        <div class="text-left">
-                            <span class="block text-2xl font-black text-amber-500">￥6.6</span>
-                            <span class="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">体验版 (共享/不保质)</span>
+                    <button onclick="openModal('体验版 (共享路线)', '6.6')" class="w-full flex items-center justify-between p-5 bg-amber-500/5 border border-amber-500/20 rounded-2xl hover:bg-amber-500/10 transition-colors">
+                        <div class="text-left font-black">
+                            <span class="block text-2xl text-amber-500">￥6.6</span>
+                            <span class="text-[10px] text-gray-500 uppercase tracking-tighter">体验版 (不保质量)</span>
                         </div>
                         <i data-lucide="chevron-right" class="w-6 h-6 text-amber-500"></i>
                     </button>
-                    <button onclick="openModal('独享版 (WebApp)', '16.6')" class="w-full flex items-center justify-between p-5 bg-amber-500 rounded-2xl shadow-xl shadow-amber-500/30 btn-glow hover:scale-[1.02] transition-transform">
-                        <div class="text-left text-white">
-                            <span class="block text-2xl font-black">￥16.6</span>
-                            <span class="text-[10px] text-white/80 font-bold uppercase tracking-widest">独享版 (稳定/极速)</span>
+                    <button onclick="openModal('独享版 (高规格)', '16.6')" class="w-full flex items-center justify-between p-5 bg-amber-500 rounded-2xl shadow-xl shadow-amber-500/30 btn-glow hover:scale-[1.02] transition-transform">
+                        <div class="text-left font-black text-white">
+                            <span class="block text-2xl">￥16.6</span>
+                            <span class="text-[10px] text-white/80 uppercase tracking-widest">单人独享 (稳定稳定)</span>
                         </div>
                         <i data-lucide="zap" class="w-6 h-6 fill-current text-white"></i>
                     </button>
                 </div>
 
                 <div class="mt-auto pt-6 border-t border-white/5 relative z-10">
-                    <a href="https://vince-zi.github.io/1/" target="_blank" class="flex items-center text-xs font-bold text-gray-500 hover:text-amber-500 transition-colors">
-                        <i data-lucide="shield-check" class="w-4 h-4 mr-2"></i>
-                        更高线路？点击查看 <span class="underline ml-1 text-amber-600">线路配置攻略</span>
+                    <a href="https://vince-zi.github.io/1/" target="_blank" class="flex items-center text-xs font-bold text-gray-500 hover:text-amber-500 transition-colors group">
+                        <i data-lucide="settings" class="w-4 h-4 mr-2"></i>
+                        更高环境？点击查看 <span class="underline ml-1">环境配置规格</span>
                     </a>
                 </div>
             </div>
 
-            <!-- 模块 2: 资源聚合 -->
-            <div class="glass-card theme-purple p-10 rounded-[3.5rem] flex flex-col relative overflow-hidden">
+            <!-- 模块 2: 资源聚合中心 (极光紫) -->
+            <div class="glass-card p-10 rounded-[3.5rem] border-purple-500/20 flex flex-col relative overflow-hidden group">
                 <div class="mb-10">
                     <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 text-purple-500">
                         <i data-lucide="layers" class="w-8 h-8"></i>
                     </div>
                     <h3 class="text-2xl font-black mb-2 tracking-tight">资源聚合中心</h3>
-                    <p class="text-gray-500 text-xs font-black uppercase tracking-widest">SODX Library Free</p>
+                    <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest italic">SODX Library Free</p>
                 </div>
                 <div class="flex-1 mb-10">
-                    <p class="text-4xl font-black text-purple-500 mb-6 tracking-tighter">免费开启</p>
-                    <ul class="space-y-4 text-sm text-gray-400 font-bold">
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> 全网影视软件资源聚合</li>
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> 海量 AI 学习素材包</li>
-                    </ul>
+                    <p class="text-4xl font-black text-purple-500 mb-6 tracking-tighter uppercase italic">Free</p>
+                    <p class="text-gray-400 font-bold text-sm leading-relaxed mb-4">全网影视软件资源聚合，海量 AI 学习素材包，每天同步全网精品。</p>
                 </div>
-                <a href="https://vince-zi.github.io/sodx/" target="_blank" class="w-full py-5 bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl text-center transition-all shadow-lg shadow-purple-600/30">
+                <a href="https://vince-zi.github.io/sodx/" target="_blank" class="w-full py-5 bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl text-center shadow-lg shadow-purple-600/30">
                     进入 SODX
                 </a>
             </div>
 
-            <!-- 模块 3: 私人定制 -->
-            <div class="glass-card theme-red p-10 rounded-[3.5rem] flex flex-col relative overflow-hidden">
+            <!-- 模块 3: 私人顾问 (绯红) -->
+            <div class="glass-card p-10 rounded-[3.5rem] border-rose-500/20 flex flex-col relative overflow-hidden group">
                 <div class="mb-10">
                     <div class="w-14 h-14 bg-rose-500/20 rounded-2xl flex items-center justify-center mb-6 text-rose-500">
                         <i data-lucide="gem" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-2xl font-black mb-2 tracking-tight">私人定制顾问</h3>
-                    <p class="text-gray-500 text-xs font-black uppercase tracking-widest">Consultant & Custom</p>
+                    <h3 class="text-2xl font-black mb-2 tracking-tight">个人定制顾问</h3>
+                    <p class="text-gray-500 text-[10px] font-black uppercase tracking-widest italic">Consultant Service</p>
                 </div>
-                <div class="flex-1 mb-10 text-rose-500">
-                    <p class="text-4xl font-black mb-6 tracking-tighter">1对1服务</p>
-                    <p class="text-gray-400 font-bold text-sm leading-relaxed">提供 WebApp 搭建服务、提示词深度定制及 24H 管家响应。</p>
+                <div class="flex-1 mb-10">
+                    <p class="text-4xl font-black text-rose-500 mb-6 tracking-tighter uppercase italic">Custom</p>
+                    <p class="text-gray-400 font-bold text-sm leading-relaxed">提供专属 WebApp 定制、1对1 咨询服务及技术管家实时响应。</p>
                 </div>
-                <a href="#contact" class="w-full py-5 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-2xl text-center transition-all shadow-lg shadow-rose-600/30">
-                    立即咨询
+                <a href="#contact" class="w-full py-5 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-2xl text-center shadow-lg shadow-rose-600/30">
+                    咨询管家
                 </a>
             </div>
+
         </div>
     </section>
 
+    <!-- 联系区 -->
     <footer id="contact" class="py-24 text-center">
         <div class="max-w-md mx-auto px-6">
             <h2 class="text-3xl font-black mb-10 tracking-tighter">添加管家微信</h2>
-            <div class="flex items-center gap-6 p-6 bg-white/5 border border-white/10 rounded-[2.5rem] shadow-2xl justify-center">
+            <div class="flex items-center gap-6 p-6 bg-white/5 border border-white/10 rounded-[2.5rem] shadow-2xl justify-center group hover:border-amber-500/30 transition-colors">
                 <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center shadow-lg">
                     <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
                 </div>
@@ -261,103 +274,82 @@
                     <p class="text-2xl font-black text-white select-all">Photomaster_zi</p>
                 </div>
             </div>
+            <p class="mt-8 text-[10px] text-gray-700 font-black uppercase tracking-[0.5em]">AI MASTER PRO HUB</p>
         </div>
     </footer>
 
-    <!-- 支付弹窗 (增强版：支持一键复制链接) -->
+    <!-- 支付弹窗 (双码实装) -->
     <div id="paymentModal" class="modal-overlay">
-        <div class="bg-zinc-950 w-full max-w-xl rounded-[3.5rem] border border-white/10 p-8 md:p-12 text-center relative overflow-hidden">
+        <div class="bg-zinc-950 w-full max-w-lg rounded-[3.5rem] border border-white/10 p-10 text-center relative overflow-hidden">
             <button onclick="closeModal()" class="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors">
                 <i data-lucide="x"></i>
             </button>
             
-            <div class="mb-6">
+            <div class="mb-8">
                 <span id="modalPlanName" class="text-[10px] text-amber-500 font-black uppercase tracking-[0.2em]">独享版 (高规格)</span>
                 <h3 class="text-5xl font-black mt-2 text-white tracking-tighter">￥<span id="modalPrice">16.6</span></h3>
             </div>
-
-            <!-- 一键支付链接板块 -->
-            <div class="bg-white/5 border border-white/10 rounded-3xl p-5 mb-8">
-                <p class="text-[10px] font-black text-amber-500 uppercase mb-3 flex items-center justify-center gap-2">
-                    <i data-lucide="link" class="w-3 h-3"></i> 快捷支付地址 (推荐)
-                </p>
-                <div class="flex gap-2">
-                    <input id="payLinkInput" type="text" readonly value="https://pay.example.com/item/166" 
-                           class="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-300 outline-none">
-                    <button onclick="copyPayLink()" class="px-6 py-3 bg-amber-500 text-black font-black rounded-xl text-sm hover:scale-105 transition-transform active:scale-95">
-                        一键复制
-                    </button>
-                </div>
-                <p class="mt-3 text-[10px] text-gray-500 font-medium italic">复制地址到浏览器打开即可直接付款</p>
-            </div>
             
-            <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="grid grid-cols-2 gap-6 mb-10">
+                <!-- 微信支付 -->
                 <div class="bg-white/5 p-4 rounded-3xl border border-white/10">
-                    <p class="text-[10px] font-black text-green-500 mb-2 uppercase">微信支付</p>
-                    <img id="wechatQR" src="https://github.com/vince-zi/1/blob/9a9ac3f828751e075b245cf52d829ea9bfa82c84/wechat.png?raw=true" class="w-full aspect-square bg-white p-1 rounded-xl">
+                    <p class="text-[10px] font-black text-green-500 uppercase mb-3 italic tracking-tighter">Wechat Pay</p>
+                    <div class="bg-white p-2 rounded-2xl inline-block shadow-lg">
+                        <img src="https://github.com/vince-zi/1/blob/9a9ac3f828751e075b245cf52d829ea9bfa82c84/wechat.png?raw=true" class="w-32 h-32 md:w-40 md:h-40 object-contain">
+                    </div>
                 </div>
+                <!-- 支付宝支付 -->
                 <div class="bg-white/5 p-4 rounded-3xl border border-white/10">
-                    <p class="text-[10px] font-black text-blue-500 mb-2 uppercase">支付宝支付</p>
-                    <img id="alipayQR" src="https://github.com/vince-zi/1/blob/9a9ac3f828751e075b245cf52d829ea9bfa82c84/alipay.png?raw=true" class="w-full aspect-square bg-white p-1 rounded-xl">
+                    <p class="text-[10px] font-black text-blue-500 uppercase mb-3 italic tracking-tighter">Alipay</p>
+                    <div class="bg-white p-2 rounded-2xl inline-block shadow-lg">
+                        <img src="https://github.com/vince-zi/1/blob/9a9ac3f828751e075b245cf52d829ea9bfa82c84/alipay.png?raw=true" class="w-32 h-32 md:w-40 md:h-40 object-contain">
+                    </div>
                 </div>
             </div>
 
-            <div class="text-xs text-gray-500">支付后截屏发送给微信：<span class="text-white font-black select-all">Photomaster_zi</span></div>
+            <div class="bg-white/5 border border-white/5 rounded-2xl p-6">
+                <p class="text-sm text-gray-400 font-medium leading-relaxed">
+                    支付成功后请 <span class="text-white font-black underline">截屏保存</span><br>
+                    私信管家微信：<span class="text-amber-500 font-bold select-all">Photomaster_zi</span>
+                </p>
+            </div>
         </div>
     </div>
-
-    <div id="toast" class="copy-toast">已成功复制支付链接！</div>
 
     <script>
         lucide.createIcons();
 
-        /* --- 背景暖黄光晕 --- */
+        /* --- 背景暖黄呼吸灯 --- */
         const blob1 = document.getElementById('blob1');
         const blob2 = document.getElementById('blob2');
         function animateBlob(blob) {
             blob.style.opacity = '0';
             setTimeout(() => {
-                blob.style.left = (Math.random() * 80 + 10) + '%';
-                blob.style.top = (Math.random() * 80 + 10) + '%';
+                const x = Math.random() * 80 + 10;
+                const y = Math.random() * 80 + 10;
+                blob.style.left = x + '%';
+                blob.style.top = y + '%';
                 blob.style.opacity = '1';
             }, 3000);
         }
         animateBlob(blob1); setInterval(() => animateBlob(blob1), 6000);
         setTimeout(() => { animateBlob(blob2); setInterval(() => animateBlob(blob2), 6000); }, 3000);
 
-        /* --- 支付弹窗逻辑 --- */
+        /* --- 弹窗逻辑 --- */
         const modal = document.getElementById('paymentModal');
         const modalPrice = document.getElementById('modalPrice');
         const modalPlanName = document.getElementById('modalPlanName');
-        const payLinkInput = document.getElementById('payLinkInput');
-        const toast = document.getElementById('toast');
-
-        // 这里设置你的支付页面地址 (比如发卡平台链接、收钱码生成的固定链接等)
-        const LINKS = {
-            '6.6': 'https://vince-zi.github.io/pay/6.6', // 替换为你真实的6.6元支付页
-            '16.6': 'https://vince-zi.github.io/pay/16.6' // 替换为你真实的16.6元支付页
-        };
 
         function openModal(name, price) {
             modalPrice.innerText = price;
             modalPlanName.innerText = name;
-            payLinkInput.value = LINKS[price]; // 自动切换链接
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal() {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
-        function copyPayLink() {
-            payLinkInput.select();
-            document.execCommand('copy');
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 2000);
-        }
-
         window.onclick = function(e) { if(e.target == modal) closeModal(); }
     </script>
 </body>
